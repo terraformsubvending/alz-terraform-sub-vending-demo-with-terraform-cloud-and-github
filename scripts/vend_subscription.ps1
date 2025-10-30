@@ -68,12 +68,12 @@ if($statusCode -eq "404")
 }
 else
 {
-    Write-Host "Workspace $workspaceName already exists."
+    Write-Host "Workspace $workspaceName already exists: $($workspace.data.id)"
     $workspaceId = $workspace.data.id
 }
 
 Write-Host "Creating workspace configuration version for $workspaceName ($workspaceId)."
-$uri = "$terraformCloudUrlPrefix/workspaces/$($workspaceId)/configuration-versions"
+$uri = "$($terraformCloudUrlPrefix)/workspaces/$($workspaceId)/configuration-versions"
 $body = @{
     "data" = @{
         "type" = "configuration-versions";
