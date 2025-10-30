@@ -68,7 +68,7 @@ if($statusCode -eq "404")
 }
 else
 {
-    Write-Host "Workspace $workspaceName already exists: $($workspace.data.id)"
+    Write-Host "Workspace $workspaceName already exists: $($workspace)"
     $workspaceId = $workspace.data.id
 }
 
