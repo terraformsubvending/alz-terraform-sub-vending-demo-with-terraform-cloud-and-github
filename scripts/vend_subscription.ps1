@@ -5,6 +5,8 @@ param(
     [string]$terraformCloudAccessToken,
     [string]$subscriptionData
 )
+$terraformCloudOrganisation = "TerraformSubVending"
+
 
 Write-Host "terraformCloudOrganisation: $terraformCloudOrganisation"
 Write-Host "terraformCloudProject: $terraformCloudProject"
@@ -18,13 +20,13 @@ tar -cvzf config.tar.gz ./*.tf ./terraform.tfvars.json ./modules
 
 $subscriptionVariables = ConvertFrom-Json $subscriptionData
 
-$workspaceName = $subscriptionVariables.subscription_name
+$workspaceName = "sub-vending"
 
 $headers=@{
   "Authorization" = "Bearer $terraformCloudAccessToken"
 }
 
-$terraformCloudUrlPrefix = "https://$($terraformCloudUrl)/api/v2"
+$terraformCloudUrlPrefix = "https://app.terraform.io/api/v2"
 
 Write-Host "Checking if workspace $workspaceName exists."
 $uri = "$terraformCloudUrlPrefix/organizations/$($terraformCloudOrganisation)/workspaces/$($workspaceName)"
