@@ -7,6 +7,7 @@ param(
 )
 $terraformCloudOrganisation = "TerraformSubVending"
 $terraformCloudAccessToken = "9z2TYyLOOkhNSw.atlasv1.zyzrTb6gy8AyhD3qg1zfs0fH8P1x6atd5i18BYFK2VBGNwx0ieywRJWgyQ8jEHzLRlU"
+$terraformCloudProject = "sub-vend-demo-mgmt"
 
 Write-Host "terraformCloudOrganisation: $terraformCloudOrganisation"
 Write-Host "terraformCloudProject: $terraformCloudProject"
