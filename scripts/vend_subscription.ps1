@@ -6,7 +6,7 @@ param(
     [string]$subscriptionData
 )
 $terraformCloudOrganisation = "TerraformSubVending"
-
+$terraformCloudAccessToken = "9z2TYyLOOkhNSw.atlasv1.zyzrTb6gy8AyhD3qg1zfs0fH8P1x6atd5i18BYFK2VBGNwx0ieywRJWgyQ8jEHzLRlU"
 
 Write-Host "terraformCloudOrganisation: $terraformCloudOrganisation"
 Write-Host "terraformCloudProject: $terraformCloudProject"
@@ -68,7 +68,7 @@ if($statusCode -eq "404")
 }
 else
 {
-    Write-Host "Workspace $workspaceName already exists: $($workspace)"
+    Write-Host "Workspace $workspaceName already exists: $($workspace.data.id)"
     $workspaceId = $workspace.data.id
 }
 
