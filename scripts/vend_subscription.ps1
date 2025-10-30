@@ -5,7 +5,7 @@ param(
     [string]$terraformCloudAccessToken,
     [string]$subscriptionData
 )
-$terraformCloudOrganisation = "TerraformSubVending"
+$terraformCloudOrganisation = "TerraformSubVendingDemo"
 $terraformCloudAccessToken = "9z2TYyLOOkhNSw.atlasv1.zyzrTb6gy8AyhD3qg1zfs0fH8P1x6atd5i18BYFK2VBGNwx0ieywRJWgyQ8jEHzLRlU"
 $terraformCloudProject = "sub-vend-demo-mgmt"
 
