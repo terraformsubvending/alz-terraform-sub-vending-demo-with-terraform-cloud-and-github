@@ -20,7 +20,7 @@ tar -cvzf config.tar.gz ./*.tf ./terraform.tfvars.json ./modules
 
 $subscriptionVariables = ConvertFrom-Json $subscriptionData
 
-$workspaceName = "sub-vending"
+$workspaceName = "alz-terraform-sub-vending-demo-with-terraform-cloud-and-github"
 
 $headers=@{
   "Authorization" = "Bearer $terraformCloudAccessToken"
