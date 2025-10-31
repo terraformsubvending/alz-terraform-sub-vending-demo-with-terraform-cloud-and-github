@@ -1,6 +1,6 @@
-variable "subscription_id" {
+variable "subscription_name" {
   type        = string
-  description = "The ID of the subscription"
+  description = "The name of the subscription"
 }
 
 variable "location" {
@@ -10,12 +10,6 @@ variable "location" {
     condition     = can(regex("^(uksouth|ukwest|westeurope|northeurope|eastus|westus|eastus2|westus2|southcentralus|centralus|northcentralus|japaneast|japanwest|southeastasia|australiaeast|australiasoutheast|brazilsouth|southafricanorth|canadacentral|canadaeast|francecentral|koreacentral|koreasouth|uksouth|ukwest|westcentralus|westeurope|westus|westus2)$", var.location))
     error_message = "The location must be a valid Azure region"
   }
-}
-
-variable "subscription_management_group_association_enabled" {
-  type        = bool
-  description = "Enable management group association for the subscription"
-  default     = true
 }
 
 variable "subscription_offer" {
@@ -32,11 +26,6 @@ variable "subscription_description" {
   description = "The description of the subscriptions purpose"
 }
 
-variable "subscription_management_group_id" {
-  type        = string
-  description = "The management group ID to assign the subscription to"
-}
-
 variable "subscription_management_group" {
   type        = string
   description = "The management group name to assign the subscription to"
@@ -51,7 +40,7 @@ variable "resource_groups" {
   description = "The resource groups to create in the subscription"
 }
 
-#variable "subscription_owners" {
-#  type        = list(string)
-#  description = "The spns of the owners of the subscription"
-#}
+variable "subscription_owners" {
+  type        = list(string)
+  description = "The spns of the owners of the subscription"
+}
