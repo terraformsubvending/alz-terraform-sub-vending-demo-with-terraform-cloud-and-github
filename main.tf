@@ -11,30 +11,31 @@ module "terraform_cloud_workspace" {
 
 module "lz_vending" {
   source  = "Azure/lz-vending/azurerm"
-  version = "3.4.1"
+  version = "6.0.0"
 
   # Manage NW RG within Vending
-  network_watcher_resource_group_enabled = true
+  network_watcher_resource_group_enabled = false
 
   # Register providers
-  subscription_register_resource_providers_enabled = true
+  subscription_register_resource_providers_enabled = false
 
   # Set the default location for resources
   location = var.location
 
   # subscription variables
-  subscription_alias_enabled = true
+  subscription_alias_enabled = false
   subscription_billing_scope = local.billing_scope
-  subscription_display_name  = var.subscription_name
-  subscription_alias_name    = var.subscription_name
+  subscription_display_name  = "sub_vending"
+  subscription_alias_name    = "sub_vending"
   subscription_workload      = var.subscription_offer
+  subscription_id = var.subscription_id
 
   # management group association variables
   subscription_management_group_association_enabled = true
   subscription_management_group_id                  = data.azurerm_management_group.vending.name
 
   # role assignments
-  role_assignment_enabled = true
+  role_assignment_enabled = false
   role_assignments        = local.subscription_user_owners
 
   # user assigned managed identity
@@ -48,14 +49,14 @@ module "lz_vending" {
   }
   umi_federated_credentials_terraform_cloud = {
     plan = {
-      name         = "${var.subscription_name}-plan"
+      name         = "sub_vending-plan"
       organization = var.terraform_cloud_organisation
       project      = var.terraform_cloud_user_project
       workspace    = local.terraform_cloud_workspace_name
       run_phase    = "plan"
     }
     apply = {
-      name         = "${var.subscription_name}-apply"
+      name         = "sub_vending-apply"
       organization = var.terraform_cloud_organisation
       project      = var.terraform_cloud_user_project
       workspace    = local.terraform_cloud_workspace_name
@@ -83,3 +84,4 @@ module "github" {
   terraform_cloud_workspace_name = local.terraform_cloud_workspace_name
   terraform_cloud_access_token   = module.terraform_cloud_workspace.team_api_token
 }
+
