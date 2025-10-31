@@ -1,8 +1,8 @@
 locals {
-  terraform_cloud_workspace_name      = "user-${var.subscription_name}"
-  user_assigned_managed_identity_name = "umi-${var.subscription_name}"
+  terraform_cloud_workspace_name      = "user-sub_vending"
+  user_assigned_managed_identity_name = "umi-sub_vending"
   identity_resource_group_name        = "rg-identity"
-  github_repository_name              = var.subscription_name
+  github_repository_name              = "sub_vending"
 }
 
 locals {
