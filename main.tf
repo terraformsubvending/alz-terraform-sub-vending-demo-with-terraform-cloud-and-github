@@ -43,29 +43,30 @@ module "lz_vending" {
   user_managed_identites = {
     name = local.user_assigned_managed_identity_name
     resource_group_key = "rg-demo-001"
-    role_asignments = { 
+    role_assignments = {
       rg-owner = {
         definition     = "Owner"
         relative_scope = "/resourceGroups/rg-demo-001"
       }
+    }
     federated_credentials_terraform_cloud = {
-        plan = {
-          name         = "lz_vending-plan"
-          organization = var.terraform_cloud_organisation
-          project      = var.terraform_cloud_user_project
-          workspace    = local.terraform_cloud_workspace_name
-          run_phase    = "plan"
-        }
-        apply = {
-          name         = "lz_vending-apply"
-          organization = var.terraform_cloud_organisation
-          project      = var.terraform_cloud_user_project
-          workspace    = local.terraform_cloud_workspace_name
-          run_phase    = "apply"
-        }
+      plan = {
+        name         = "lz_vending-plan"
+        organization = var.terraform_cloud_organisation
+        project      = var.terraform_cloud_user_project
+        workspace    = local.terraform_cloud_workspace_name
+        run_phase    = "plan"
       }
+      apply = {
+        name         = "lz_vending-apply"
+        organization = var.terraform_cloud_organisation
+        project      = var.terraform_cloud_user_project
+        workspace    = local.terraform_cloud_workspace_name
+        run_phase    = "apply"
+      }
+    }
 
-  }  
+  }    
 
   # resource groups
   resource_group_creation_enabled = true
