@@ -42,7 +42,7 @@ module "lz_vending" {
   umi_enabled             = true
   user_managed_identities = {
     name = local.user_assigned_managed_identity_name
-    resource_group_key = "rg-demo-001"
+    resource_group_name_existing = "rg-identity"
     role_assignments = {
       rg-owner = {
         definition     = "Owner"
