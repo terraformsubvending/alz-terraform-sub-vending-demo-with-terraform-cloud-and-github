@@ -40,7 +40,7 @@ module "lz_vending" {
 
   # user assigned managed identity
   umi_enabled             = true
-  user_managed_identites = {
+  user_managed_identities = {
     name = local.user_assigned_managed_identity_name
     resource_group_key = "rg-demo-001"
     role_assignments = {
