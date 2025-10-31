@@ -5,7 +5,7 @@ module "terraform_cloud_workspace" {
   project_name            = var.terraform_cloud_user_project
   arm_subscription_id     = module.lz_vending.subscription_id
   arm_tenant_id           = data.azuread_client_config.current.tenant_id
-  tfc_azure_run_client_id = module.lz_vending.umi_client_id
+#  tfc_azure_run_client_id = module.lz_vending.umi_client_id
   resource_group_name     = [ for key, resource_group in var.resource_groups : resource_group.name if resource_group.primary ][0]
 }
 
