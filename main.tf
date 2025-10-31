@@ -12,57 +12,10 @@ module "terraform_cloud_workspace" {
 module "lz_vending" {
   source  = "Azure/lz-vending/azurerm"
   version = "6.0.0"
-
-  # Manage NW RG within Vending
-  network_watcher_resource_group_enabled = false
-
-  # Register providers
-  subscription_register_resource_providers_enabled = false
-
-  # Set the default location for resources
-  location = var.location
-
-  # subscription variables
-  subscription_alias_enabled = false
-  subscription_billing_scope = local.billing_scope
-  subscription_display_name  = "sub_vending"
-  subscription_alias_name    = "sub_vending"
-  subscription_workload      = var.subscription_offer
-  subscription_id = var.subscription_id
-
-  # management group association variables
+  location = "germanywestcentral"
+  subscription_id = "969a5e2c-b2ac-4cd2-b726-a204e2f1c1ef"
   subscription_management_group_association_enabled = true
-  subscription_management_group_id                  = data.azurerm_management_group.vending.name
-
-  # role assignments
-  role_assignment_enabled = false
-  role_assignments        = local.subscription_user_owners
-
-  # user assigned managed identity
-  umi_enabled             = true
-  umi_name                = local.user_assigned_managed_identity_name
-  umi_resource_group_name = local.identity_resource_group_name
-  umi_role_assignments = { for key, resource_group in var.resource_groups : key => {
-    definition     = "Contributor"
-    relative_scope = "/resourceGroups/${resource_group.name}"
-    }
-  }
-  umi_federated_credentials_terraform_cloud = {
-    plan = {
-      name         = "sub_vending-plan"
-      organization = var.terraform_cloud_organisation
-      project      = var.terraform_cloud_user_project
-      workspace    = local.terraform_cloud_workspace_name
-      run_phase    = "plan"
-    }
-    apply = {
-      name         = "sub_vending-apply"
-      organization = var.terraform_cloud_organisation
-      project      = var.terraform_cloud_user_project
-      workspace    = local.terraform_cloud_workspace_name
-      run_phase    = "apply"
-    }
-  }
+  subscription_management_group_id = "sub-vending-demo2"
 
   # resource groups
   resource_group_creation_enabled = true
@@ -84,4 +37,3 @@ module "github" {
   terraform_cloud_workspace_name = local.terraform_cloud_workspace_name
   terraform_cloud_access_token   = module.terraform_cloud_workspace.team_api_token
 }
-
