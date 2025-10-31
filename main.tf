@@ -14,7 +14,7 @@ module "lz_vending" {
   version = "6.0.0"
 
   # Manage NW RG within Vending
-  network_watcher_resource_group_enabled = false
+  #network_watcher_resource_group_enabled = false
 
   # Register providers
   subscription_register_resource_providers_enabled = false
@@ -40,29 +40,29 @@ module "lz_vending" {
 
   # user assigned managed identity
   umi_enabled             = true
-  umi_name                = local.user_assigned_managed_identity_name
-  umi_resource_group_name = local.identity_resource_group_name
-  umi_role_assignments = { for key, resource_group in var.resource_groups : key => {
-    definition     = "Contributor"
-    relative_scope = "/resourceGroups/${resource_group.name}"
-    }
-  }
-  umi_federated_credentials_terraform_cloud = {
-    plan = {
-      name         = "sub_vending-plan"
-      organization = var.terraform_cloud_organisation
-      project      = var.terraform_cloud_user_project
-      workspace    = local.terraform_cloud_workspace_name
-      run_phase    = "plan"
-    }
-    apply = {
-      name         = "sub_vending-apply"
-      organization = var.terraform_cloud_organisation
-      project      = var.terraform_cloud_user_project
-      workspace    = local.terraform_cloud_workspace_name
-      run_phase    = "apply"
-    }
-  }
+  #umi_name                = local.user_assigned_managed_identity_name
+  #umi_resource_group_name = local.identity_resource_group_name
+  #umi_role_assignments = { for key, resource_group in var.resource_groups : key => {
+  #  definition     = "Contributor"
+  #  relative_scope = "/resourceGroups/${resource_group.name}"
+  #  }
+  #}
+  #umi_federated_credentials_terraform_cloud = {
+  #  plan = {
+  #    name         = "sub_vending-plan"
+  #    organization = var.terraform_cloud_organisation
+  #    project      = var.terraform_cloud_user_project
+  #    workspace    = local.terraform_cloud_workspace_name
+  #    run_phase    = "plan"
+  #  }
+  #  apply = {
+  #    name         = "sub_vending-apply"
+  #    organization = var.terraform_cloud_organisation
+  #    project      = var.terraform_cloud_user_project
+  #    workspace    = local.terraform_cloud_workspace_name
+  #    run_phase    = "apply"
+  #  }
+  #}
 
   # resource groups
   resource_group_creation_enabled = true
